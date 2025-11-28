@@ -2,11 +2,12 @@ package tests;
 
 import pages.InventoryPage;
 import pages.LoginPage;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class AddToCartTest extends BaseTest{
-    public static void main(String[] args) {
-        setup();
-
+    @Test
+    public void addToCart(){
         LoginPage login = new LoginPage(driver);
         login.login("standard_user", "secret_sauce");
 
@@ -16,12 +17,6 @@ public class AddToCartTest extends BaseTest{
         int badgeCount = inventory.getCartBadgeCount();
         System.out.println("số lượng sản phẩm trong giỏ hàng : "+ badgeCount);
 
-        if (badgeCount == 1) {
-            System.out.println("✅ Test Passed: Giỏ hàng đã nhảy số 1");
-        } else {
-            System.out.println("❌ Test Failed: Giỏ hàng không nhảy số");
-        }
-
-        tearDown();
+        Assert.assertEquals(badgeCount, 1, "Lỗi: Giỏ hàng chưa cập nhật số lượng!");
     }
 }

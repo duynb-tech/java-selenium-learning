@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class AddToCartTest extends BaseTest{
     @Test
     public void addToCart(){
-        LoginPage login = new LoginPage(driver);
+        LoginPage login = new LoginPage(driver, wait);
         login.login("standard_user", "secret_sauce");
 
         InventoryPage inventory = new InventoryPage(driver);
